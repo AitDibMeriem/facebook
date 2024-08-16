@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Page</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Admin Panel</h1>
+        <h2>All User Credentials</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Email or Phone</th>
+                    <th>Password</th>
+                </tr>
+            </thead>
+            <tbody id="userTableBody">
+                <!-- User data will be inserted here -->
+            </tbody>
+        </table>
+    </div>
+    <script>
+        // Retrieve users data from localStorage
+        const users = JSON.parse(localStorage.getItem('users')) || [];
+
+        // Display user data in the table
+        const userTableBody = document.getElementById('userTableBody');
+
+        users.forEach(user => {
+            const row = document.createElement('tr');
+            const emailOrPhoneCell = document.createElement('td');
+            const passwordCell = document.createElement('td');
+
+            emailOrPhoneCell.textContent = user.emailOrPhone;
+            passwordCell.textContent = user.password;
+
+            row.appendChild(emailOrPhoneCell);
+            row.appendChild(passwordCell);
+
+            userTableBody.appendChild(row);
+        });
+    </script>
+</body>
+</html>
